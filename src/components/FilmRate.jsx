@@ -1,4 +1,3 @@
-
 export default function FilmRate({ element }) {
     let voteTo5 = Math.round(element.vote_average / 2)
 
@@ -14,7 +13,7 @@ export default function FilmRate({ element }) {
                 </span>
             ))}
         </div>
-    );
+    )
 
 
 }
