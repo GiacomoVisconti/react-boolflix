@@ -9,17 +9,20 @@ function App() {
 
   function onSearchClick() {
     let string = searchTitleMovie?.replace(" ", "+")
-    console.log(string);
+
     url_movie = `https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.VITE_API_KEY}&query=${string}`
-    console.log(url_movie);
+
 
     fetch(url_movie)
       .then(res => res.json())
       .then(data => {
         setMovieData(data)
-        console.log(data);
+
 
       })
+
+    console.log(movieData);
+
 
 
   }
@@ -54,10 +57,26 @@ function App() {
               </button>
             </div>
 
-
           </div>
-
         </form>
+        <div className="my-4">
+          <div className="row g-3">
+            {movieData?.results?.map((element, index) => {
+              return (
+                <div key={index} className="col-4">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h5 className="card-title">{element.title}</h5>
+                      <h6 className="card-subtitle mb-2 text-body-secondary">{element.original_title}</h6>
+                      <p className="card-text">{element.original_language}</p>
+                      <p className="card-text">{element.vote_average}</p>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </>
   )
