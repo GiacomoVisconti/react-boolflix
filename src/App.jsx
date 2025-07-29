@@ -1,10 +1,12 @@
 import { useState } from "react"
+import ISO6391 from 'iso-639-1'
 
 function App() {
 
   const [searchTitleMovie, setSearchMovieTitle] = useState(null)
   let url_movie = ''
   const [movieData, setMovieData] = useState(null)
+
 
 
   function onSearchClick() {
@@ -68,7 +70,12 @@ function App() {
                     <div className="card-body">
                       <h5 className="card-title">{element.title}</h5>
                       <h6 className="card-subtitle mb-2 text-body-secondary">{element.original_title}</h6>
-                      <p className="card-text">{element.original_language}</p>
+                      <img
+                        src={`https://flagcdn.com/16x12/${element.original_language}.png`}
+                        width="16"
+                        height="12"
+                        alt={element.original_language} />
+                      {/* <p className="card-text">{element.original_language}</p> */}
                       <p className="card-text">{element.vote_average}</p>
                     </div>
                   </div>
