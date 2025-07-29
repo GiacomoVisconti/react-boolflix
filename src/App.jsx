@@ -3,9 +3,12 @@ import ISO6391 from 'iso-639-1'
 
 function App() {
 
-  const [searchTitleMovie, setSearchMovieTitle] = useState(null)
+  const [searchTitleMovie, setSearchTitleMovie] = useState(null)
+  const [searchTitleTvSeries, setSearchTitleTvSeries] = useState(null)
   let url_movie = ''
+  let url_tvSeries
   const [movieData, setMovieData] = useState(null)
+  const [tvData, setTvData] = useState(null)
 
 
 
@@ -13,6 +16,7 @@ function App() {
     let string = searchTitleMovie?.replace(" ", "+")
 
     url_movie = `https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.VITE_API_KEY}&query=${string}`
+    url_tvSeries = `https://api.themoviedb.org/3/search/tv?api_key=${import.meta.env.VITE_API_KEY}&query=${string}`
 
 
     fetch(url_movie)
@@ -23,7 +27,15 @@ function App() {
 
       })
 
-    console.log(movieData);
+    fetch(url_tvSeries)
+      .then(res => res.json())
+      .then(data => {
+        setTvData(data)
+
+
+      })
+
+
 
 
 
@@ -49,7 +61,7 @@ function App() {
                 id=""
                 aria-describedby="helpId"
                 placeholder="Insert a movie title to search"
-                onChange={(e) => setSearchMovieTitle(e.target.value)}
+                onChange={(e) => setSearchTitleMovie(e.target.value)}
               />
             </div>
             <div className="">
@@ -62,7 +74,8 @@ function App() {
           </div>
         </form>
         <div className="my-4">
-          <div className="row g-3">
+          <div className="row mb-4 g-3">
+            <h2>Movies</h2>
             {movieData?.results?.map((element, index) => {
               return (
                 <div key={index} className="col-4">
@@ -70,6 +83,28 @@ function App() {
                     <div className="card-body">
                       <h5 className="card-title">{element.title}</h5>
                       <h6 className="card-subtitle mb-2 text-body-secondary">{element.original_title}</h6>
+                      <img
+                        src={`https://flagcdn.com/16x12/${element.original_language}.png`}
+                        width="16"
+                        height="12"
+                        alt={element.original_language} />
+                      {/* <p className="card-text">{element.original_language}</p> */}
+                      <p className="card-text">{element.vote_average}</p>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+          <div className="row g-3">
+            <h2>TV</h2>
+            {tvData?.results?.map((element, index) => {
+              return (
+                <div key={index} className="col-4">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h5 className="card-title">{element.name}</h5>
+                      <h6 className="card-subtitle mb-2 text-body-secondary">{element.original_name}</h6>
                       <img
                         src={`https://flagcdn.com/16x12/${element.original_language}.png`}
                         width="16"
