@@ -1,5 +1,6 @@
 .card-img-overlay{
         display: none;
+        overflow: hidden;
     }
 
 .card:hover{
