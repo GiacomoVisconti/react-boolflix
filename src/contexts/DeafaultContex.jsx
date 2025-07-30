@@ -7,6 +7,7 @@ function MovieTvProvider({ children }) {
     const [tvData, setTvData] = useState(null)
     const [movieGenres, setMovieGenres] = useState(null)
     const [tvGenres, setTvGenres] = useState(null)
+    const [popularMoviesData, setPopularMoviesData] = useState(null)
 
     function onSearchClick(searchTitle) {
         let string = searchTitle?.replace(" ", "+")
@@ -34,19 +35,30 @@ function MovieTvProvider({ children }) {
 
     }
 
+
     useEffect(() => {
         const movie_genres_url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.VITE_API_KEY}`
         const tv_genres_url = `https://api.themoviedb.org/3/genre/tv/list?api_key=${import.meta.env.VITE_API_KEY}`
+        const popular_movies_url = `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_API_KEY}`
 
         fetch(movie_genres_url)
             .then(res => res.json())
             .then(data => {
                 setMovieGenres(data)
+                console.log(data);
+
             })
         fetch(tv_genres_url)
             .then(res => res.json())
             .then(data => {
                 setTvGenres(data)
+            })
+        fetch(popular_movies_url)
+            .then(res => res.json())
+            .then(data => {
+                setPopularMoviesData(data)
+
+
             })
 
 
@@ -57,7 +69,7 @@ function MovieTvProvider({ children }) {
     return (
         <MovieTvContext.Provider
             value={{
-                onSearchClick, movieData, tvData, movieGenres, tvGenres,
+                onSearchClick, movieData, tvData, movieGenres, tvGenres, popularMoviesData,
             }}>
 
             {children}
