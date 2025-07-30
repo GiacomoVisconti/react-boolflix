@@ -4,6 +4,7 @@ import HomePage from "./Pages/HomePage";
 import { MovieTvProvider } from "./contexts/DeafaultContex";
 import './index.css'
 import SingleMovie from "./Pages/SingleMovie";
+import SingleTv from "./Pages/SingleTv";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Route Component={DefaultLayout}>
             <Route path="/" Component={HomePage} />
             <Route path="/movie/:id" Component={SingleMovie} />
+            <Route path="/tv/:id" Component={SingleTv} />
           </Route>
         </Routes>
       </BrowserRouter>
