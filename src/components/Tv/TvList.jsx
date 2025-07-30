@@ -1,5 +1,5 @@
 import TvCard from "./TvCard"
-import { useMovieTv } from "../contexts/DeafaultContex"
+import { useMovieTv } from "../../contexts/DeafaultContex"
 
 export default function TvList() {
     const { tvData } = useMovieTv()

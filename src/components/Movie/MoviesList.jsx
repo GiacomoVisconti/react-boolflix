@@ -1,5 +1,5 @@
 import MovieCard from "./MovieCard"
-import { useMovieTv } from "../contexts/DeafaultContex"
+import { useMovieTv } from "../../contexts/DeafaultContex"
 
 export default function MovieList() {
     const { movieData } = useMovieTv()

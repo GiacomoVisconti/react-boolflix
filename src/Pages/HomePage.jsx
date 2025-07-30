@@ -1,5 +1,5 @@
-import MovieList from "../components/MoviesList"
-import TvList from "../components/TvList"
+import MovieList from "../components/Movie/MoviesList"
+import TvList from "../components/Tv/TvList"
 import { useMovieTv } from "../contexts/DeafaultContex"
 
 

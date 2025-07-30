@@ -22,7 +22,7 @@ export default function Header() {
                             placeholder="Insert a movie title to search"
                             onChange={(e) => setSearchTitle(e.target.value)}
                         />
-                        <button type="button" className="btn btn-primary" onClick={() => onSearchClick(searchTitle)}>
+                        <button type="button" className="btn btn-danger" onClick={() => onSearchClick(searchTitle)}>
                             Search
                         </button>
                     </form>
