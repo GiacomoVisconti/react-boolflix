@@ -11,11 +11,9 @@ export default function HomePage() {
                 <div className="container">
                     <div className="py-4">
 
-                        {/* MOVIES */}
-                        <MovieList />
 
-                        {/* SERIES */}
-                        <TvList />
+
+
 
                     </div>
                 </div >
