@@ -8,6 +8,12 @@ export default function SingleMovie() {
     const [movieData, setMovieData] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_API_KEY}`
+    const movie_cast_url = `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${import.meta.env.VITE_API_KEY}`
+    const [genres, setGenres] = useState([])
+    const [castData, setCastData] = useState(null)
+
+
+
 
     useEffect(() => {
         setIsLoading(true)
@@ -17,8 +23,36 @@ export default function SingleMovie() {
                 setMovieData(data)
                 console.log(movieData);
 
+
+                const movie_genres = data.genres.map(({ name }) => {
+                    return name
+
+                })
+                console.log(movie_genres);
+
+                const limit_genres = movie_genres?.splice(0, 5)
+                setGenres(limit_genres)
+
+
+
             })
-            .finally(() => setIsLoading(false))
+        fetch(movie_cast_url)
+            .then(res => res.json())
+            .then(data => {
+                const cast = data?.cast.map(({ name }) => {
+                    return name
+
+                })
+                setCastData(cast.splice(0, 5))
+
+
+
+
+            })
+            .finally(() => {
+
+                setIsLoading(false)
+            })
     }, [])
 
 
@@ -26,7 +60,7 @@ export default function SingleMovie() {
         <div className="bg-dark">
             <div className="container">
                 <div className="card border-0 py-5 bg-dark">
-                    {movieData && <div className="row g-0">
+                    {(movieData) && <div className="row g-0">
                         <div className="col-md-4">
                             <img src={`https://image.tmdb.org/t/p/w342/${movieData?.poster_path}`} className="img-fluid rounded-start" alt={movieData.title} />
                         </div>
@@ -43,8 +77,16 @@ export default function SingleMovie() {
                                 </div>
                                 <div className="d-flex">
                                     <b>Genres:</b>
-                                    {movieData.genres.map(({ name }, index) => {
-                                        return <p key={index} className="px-1">{name},</p>
+                                    {genres?.map((element, index) => {
+                                        return (<p key={index} className="px-1">{element},</p>)
+
+                                    })}
+
+                                </div>
+                                <div className="d-flex">
+                                    <b>Cast:</b>
+                                    {castData?.map((element, index) => {
+                                        return <p key={index} className="px-1">{element},</p>
 
                                     })}
                                 </div>
