@@ -7,7 +7,7 @@ export default function HomePage() {
     const { movieData } = useMovieTv()
     return (
         <>
-            <div className="bg-secondary">
+            <div className="bg-dark">
                 <div className="container">
                     <div className="py-4">
 

@@ -7,7 +7,7 @@ export default function Header() {
 
     return (
         <header>
-            <nav className="navbar bg-dark">
+            <nav className="navbar bg-black">
                 <div className="container-fluid">
                     <a className="navbar-brand">
                         <img src="BoolflixLogo.png" alt="logo" className="w-75" />

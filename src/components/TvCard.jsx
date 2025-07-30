@@ -2,7 +2,7 @@ import FilmRate from "./FilmRate"
 
 export default function TvCard({ element }) {
     return (
-        <div className="col-2">
+        <div className="col-3">
             <div className="card text-bg-dark h-100">
                 <img src={`https://image.tmdb.org/t/p/w342/${element.poster_path}`} className="card-img" alt={element.original_language} />
                 <div className="card-img-overlay fs-6 g-0 ">
