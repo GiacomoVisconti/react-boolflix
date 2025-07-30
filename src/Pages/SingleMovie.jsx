@@ -8,6 +8,7 @@ export default function SingleMovie() {
     const [movieData, setMovieData] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_API_KEY}`
+
     useEffect(() => {
         setIsLoading(true)
         fetch(url)
@@ -39,6 +40,13 @@ export default function SingleMovie() {
                                 </div>
                                 <div className="pt-3">
                                     <b>Overview: </b> <p className="fs-6">{movieData.overview}</p>
+                                </div>
+                                <div className="d-flex">
+                                    <b>Genres:</b>
+                                    {movieData.genres.map(({ name }, index) => {
+                                        return <p key={index} className="px-1">{name},</p>
+
+                                    })}
                                 </div>
                             </div>
                         </div>
